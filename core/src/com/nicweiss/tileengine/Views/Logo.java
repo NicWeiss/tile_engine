@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.nicweiss.tileengine.Main;
-import com.nicweiss.tileengine.View;
+import com.nicweiss.tileengine.Generic.View;
 
 
 public class Logo extends View{

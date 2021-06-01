@@ -1,4 +1,4 @@
-package com.nicweiss.tileengine;
+package com.nicweiss.tileengine.Generic;
 
 import java.util.HashMap;
 

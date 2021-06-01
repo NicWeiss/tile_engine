@@ -1,10 +1,13 @@
-package com.nicweiss.tileengine;
+package com.nicweiss.tileengine.Generic;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.nicweiss.tileengine.Main;
+import com.nicweiss.tileengine.Views.MainMenu;
 
 
 public abstract class View implements InputProcessor {
+    public  float fingerX, fingerY;
     public static Store store ;
 
     public void init(){
@@ -28,6 +31,11 @@ public abstract class View implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        fingerX = (screenX * Main.camera.viewportWidth) / Gdx.graphics.getWidth();
+        fingerX = (fingerX - Main.camera.viewportWidth / 2 + store.display.get("width") / 2);
+
+        fingerY = store.display.get("height") - ((screenY * store.display.get("height")) / Gdx.graphics.getHeight());
+
         return false;
     }
 
@@ -64,5 +72,4 @@ public abstract class View implements InputProcessor {
         super.finalize();
         Gdx.app.log("Debug","View finalize");
     }
-
 }
