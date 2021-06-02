@@ -14,6 +14,8 @@ public class BaseObject {
     protected float rotation = 0;
     protected float opacity = 1;
     protected boolean deleted = false;
+    protected String objectId;
+    protected boolean isTouched = false;
 
 
     @Override
@@ -49,11 +51,17 @@ public class BaseObject {
 
 
     public void checkTouch(float touch_x, float touch_y) {
+        this.isTouched = false;
         if (touch_x >= x && touch_x <= x + img.getWidth()) {
             if (touch_y >= y && touch_y <= y + img.getHeight()) {
+                this.isTouched = true;
                 onTouch();
             }
         }
+    }
+
+    public void touchOut(){
+        isTouched = false;
     }
 
     public void onTouch(){
@@ -105,7 +113,23 @@ public class BaseObject {
         deleted = true;
     }
 
-    public boolean statatus() {
+    public boolean status() {
         return deleted;
+    }
+
+    public String getObjectId(){
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
+
+    public float getWidth(){
+        return img.getWidth();
+    }
+
+    public float getHeight(){
+        return img.getHeight();
     }
 }
