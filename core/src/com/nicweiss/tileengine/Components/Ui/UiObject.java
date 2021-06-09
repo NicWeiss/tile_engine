@@ -2,6 +2,7 @@ package com.nicweiss.tileengine.Components.Ui;
 
 import com.badlogic.gdx.Gdx;
 import com.nicweiss.tileengine.Generic.BaseObject;
+import com.nicweiss.tileengine.Lib.Font;
 
 public class UiObject extends BaseObject {
     public String title;

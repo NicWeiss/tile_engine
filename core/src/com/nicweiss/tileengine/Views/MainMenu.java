@@ -69,7 +69,7 @@ public class MainMenu extends View implements UiObject.Callback {
     public void render(SpriteBatch batch) {
 
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Gdx.gl.glClearColor((float) 0x00 / 0xff, (float) 0x00 / 0xff, (float) 0x00 / 0xff, 1);
+        Gdx.gl.glClearColor((float) 0xf0 / 0xff, (float) 0xf0 / 0xff, (float) 0xf0 / 0xff, 1);
 
         for (ButtonCommon menuButton: menuButtonList) {
             menuButton.draw(batch);

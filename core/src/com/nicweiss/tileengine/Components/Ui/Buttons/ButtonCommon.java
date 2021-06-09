@@ -3,14 +3,14 @@ package com.nicweiss.tileengine.Components.Ui.Buttons;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.nicweiss.tileengine.Components.Ui.UiObject;
+import com.nicweiss.tileengine.Lib.Font;
+
 
 public class ButtonCommon extends UiObject {
     private Texture touchedImg;
     private Texture unTouchedImg;
-
-    BitmapFont font = new BitmapFont();
+    private Font fontTitle;
 
     public void init(){
         setImage("Components/Buttons/600x200_common_button.png", false);
@@ -30,8 +30,14 @@ public class ButtonCommon extends UiObject {
             img = unTouchedImg;
         }
         super.draw(batch);
-        font.getData().setScale(6);
-        font.draw(batch, title, getX() + (getWidth() / 2) - (title.length() * 30) + 40, getY() + 130);
+        fontTitle.draw(batch , title, 0, getY());
+    }
+
+    @Override
+    public void setTitle(String title) {
+        super.setTitle(title);
+        fontTitle = new Font();
+        fontTitle.setText(title);
     }
 
     public void setImage(String imageName, boolean touched) {
