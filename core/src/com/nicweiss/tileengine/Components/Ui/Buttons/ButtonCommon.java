@@ -1,6 +1,5 @@
 package com.nicweiss.tileengine.Components.Ui.Buttons;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -14,7 +13,7 @@ public class ButtonCommon extends UiObject {
     private Texture unTouchedImg;
     private Font fontTitle;
 
-    public void init(Store store) {
+    public ButtonCommon(Store store) {
         this.store = store;
         setImage("Components/Buttons/600x200_common_button.png", false);
         setImage("Components/Buttons/600x200_common_button_touched.png", true);
@@ -27,17 +26,13 @@ public class ButtonCommon extends UiObject {
 
     @Override
     public void draw(Batch batch) {
-        if (isTouched) {
-            img = touchedImg;
-        } else {
-            img = unTouchedImg;
-        }
+        img = isTouched ? touchedImg : unTouchedImg;
         super.draw(batch);
         fontTitle.draw(
                 batch,
                 title,
                 ((store.display.get("width") / 2) - (fontTitle.getWidth() / 2)),
-                ((img.getHeight()/2) + (getY()) + fontTitle.getHeight()/2)
+                ((img.getHeight() / 2) + (getY()) + fontTitle.getHeight() / 2)
         );
     }
 

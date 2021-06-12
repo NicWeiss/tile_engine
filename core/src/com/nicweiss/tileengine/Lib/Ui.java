@@ -1,26 +1,21 @@
 package com.nicweiss.tileengine.Lib;
 
-import com.badlogic.gdx.Gdx;
 import com.nicweiss.tileengine.Components.Ui.Buttons.ButtonCommon;
 import com.nicweiss.tileengine.Generic.Store;
+
+import java.util.HashMap;
 
 public class Ui {
     public static Store store;
 
-    public void init(Store store) {
+    public Ui(Store store) {
         this.store = store;
     }
 
-//    public ButtonCommon createButton(String title) {
-//        ButtonCommon button = new ButtonCommon();
-//        button.init();
-//        return button;
-//    }
-
-    public ButtonCommon[] createButtonList(String[][] buttonsData) {
+    public ButtonCommon[] createButtonList(HashMap<Integer, String[]> buttonsDescription) {
         ButtonCommon button;
 
-        int buttonsCount = buttonsData.length;
+        int buttonsCount = buttonsDescription.size();
         int paddingsCount = buttonsCount - 1;
         int padding = 80;
         float buttonHeight = 0;
@@ -29,10 +24,9 @@ public class Ui {
         ButtonCommon[] buttonList = new ButtonCommon[buttonsCount];
 
         for (int i = 0; i < buttonsCount; i++) {
-            button = new ButtonCommon();
-            button.init(this.store);
-            button.setTitle(buttonsData[i][0]);
-            button.setObjectId(buttonsData[i][1]);
+            button = new ButtonCommon(this.store);
+            button.setTitle(buttonsDescription.get(i)[0]);
+            button.setObjectId(buttonsDescription.get(i)[1]);
 
             buttonHeight = button.getHeight();
             buttonWidth = button.getWidth();
@@ -50,7 +44,6 @@ public class Ui {
             buttonOfList.setX(buttonsListContainerLeft);
             buttonPositionTop = buttonPositionTop + finalButtonHeight;
         }
-
 
         return buttonList;
     }

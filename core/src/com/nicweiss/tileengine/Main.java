@@ -28,11 +28,9 @@ public class Main extends ApplicationAdapter {
         Gdx.app.setLogLevel(LOG_INFO);
 
         store = new Store();
-        store.init();
 
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
-//		Gdx.app.log("CREATE! ", "screenWidth: " + String.valueOf(screenWidth) + " - screenHeight: " + String.valueOf(screenHeight));
 
         float ratioX = 0;
         float ratioY = 0;
@@ -67,11 +65,9 @@ public class Main extends ApplicationAdapter {
         }
         System.gc();
         view = newView;
-        view.init();
         Gdx.input.setInputProcessor(view);
         Gdx.input.setCatchBackKey(true);
     }
-
 
     @Override
     public void resize(int width, int height) {

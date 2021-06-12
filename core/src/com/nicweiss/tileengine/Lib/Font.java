@@ -20,12 +20,12 @@ public class Font {
         this(100, Color.BLACK);
     }
 
-    public Font(int size, Color color ){
+    public Font(int size, Color color) {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Roboto-Medium.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = (int)(size * 4.5);
+        parameter.size = (int) (size * 4.5);
         parameter.color = color;
-        parameter.characters = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"+
+        parameter.characters = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" +
                 "!\"#$%&\\'()*+,-./:;<=>?@[\\\\]^_`{|}~абвгдеёжзийклмнопрстуфхчшщъьыэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЧШЩЪЬЫЭЮЯ";
         font = generator.generateFont(parameter);
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);

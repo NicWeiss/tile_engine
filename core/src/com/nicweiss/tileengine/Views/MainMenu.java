@@ -1,14 +1,18 @@
 package com.nicweiss.tileengine.Views;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
 import com.nicweiss.tileengine.Components.Ui.Buttons.ButtonCommon;
 import com.nicweiss.tileengine.Components.Ui.UiObject;
 import com.nicweiss.tileengine.Generic.View;
+import com.nicweiss.tileengine.Lib.Font;
 import com.nicweiss.tileengine.Lib.Ui;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MainMenu extends View implements UiObject.Callback {
@@ -16,31 +20,26 @@ public class MainMenu extends View implements UiObject.Callback {
     public Ui ui;
 
     ButtonCommon[] menuButtonList;
+    private Font fontTitle;
+    private String someText;
 
-    public void init() {
-        ui = new Ui();
-        ui.init(store);
+    public MainMenu() {
+        ui = new Ui(store);
 
-        String[][] buttonsData = new String[4][2];
+        HashMap<Integer, String[]> buttonsDescription = new HashMap();
+        buttonsDescription.put(0, new String[]{"New game", "menu_newGame"});
+        buttonsDescription.put(1, new String[]{"Load game", "menu_loadGame"});
+        buttonsDescription.put(2, new String[]{"Settings", "menu_settings"});
+        buttonsDescription.put(3, new String[]{"Exit", "menu_exit"});
 
-        buttonsData[0][0] = "New game";
-        buttonsData[0][1] = "menu_newGame";
-
-        buttonsData[1][0] = "Load game";
-        buttonsData[1][1] = "menu_loadGame";
-
-        buttonsData[2][0] = "Settings";
-        buttonsData[2][1] = "menu_settings";
-
-        buttonsData[3][0] = "Exit";
-        buttonsData[3][1] = "menu_exit";
-
-        menuButtonList = ui.createButtonList(buttonsData);
+        menuButtonList = ui.createButtonList(buttonsDescription);
 
         for (ButtonCommon menuButton : menuButtonList) {
             menuButton.registerCallBack(this);
         }
 
+        fontTitle = new Font(14, Color.WHITE);
+        fontTitle.setText("");
     }
 
     @Override
@@ -60,6 +59,8 @@ public class MainMenu extends View implements UiObject.Callback {
             menuButton.touchOut();
         }
 
+        someText = "";
+        fontTitle.setText("");
         return false;
     }
 
@@ -74,10 +75,14 @@ public class MainMenu extends View implements UiObject.Callback {
         for (ButtonCommon menuButton : menuButtonList) {
             menuButton.draw(batch);
         }
+
+        fontTitle.draw(batch, someText, 0, 100);
     }
 
     @Override
     public void callingBack(String str) {
+        someText = str;
+        fontTitle.setText(someText);
         Gdx.app.log("Debug", str);
     }
 }

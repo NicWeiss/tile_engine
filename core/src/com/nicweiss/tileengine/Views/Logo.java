@@ -15,7 +15,7 @@ public class Logo extends View{
     int counter;
     ShapeRenderer shapeRenderer;
 
-    public void init(){
+    public Logo(){
         logo = new Texture("TELogo.png");
         opacity=1;
         counter = 150;
