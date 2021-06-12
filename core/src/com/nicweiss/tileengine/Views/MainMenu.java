@@ -17,7 +17,7 @@ public class MainMenu extends View implements UiObject.Callback {
 
     ButtonCommon[] menuButtonList;
 
-    public void init(){
+    public void init() {
         ui = new Ui();
         ui.init(store);
 
@@ -37,7 +37,7 @@ public class MainMenu extends View implements UiObject.Callback {
 
         menuButtonList = ui.createButtonList(buttonsData);
 
-        for (ButtonCommon menuButton: menuButtonList) {
+        for (ButtonCommon menuButton : menuButtonList) {
             menuButton.registerCallBack(this);
         }
 
@@ -47,7 +47,7 @@ public class MainMenu extends View implements UiObject.Callback {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         super.touchDown(screenX, screenY, pointer, button);
 
-        for (ButtonCommon menuButton: menuButtonList) {
+        for (ButtonCommon menuButton : menuButtonList) {
             menuButton.checkTouch(fingerX, fingerY);
         }
 
@@ -56,28 +56,28 @@ public class MainMenu extends View implements UiObject.Callback {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        for (ButtonCommon menuButton: menuButtonList) {
+        for (ButtonCommon menuButton : menuButtonList) {
             menuButton.touchOut();
         }
 
         return false;
     }
 
-    public void log(String message){
+    public void log(String message) {
     }
 
     public void render(SpriteBatch batch) {
 
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Gdx.gl.glClearColor((float) 0xf0 / 0xff, (float) 0xf0 / 0xff, (float) 0xf0 / 0xff, 1);
+        Gdx.gl.glClearColor((float) 0x00 / 0xff, (float) 0x00 / 0xff, (float) 0x00 / 0xff, 1);
 
-        for (ButtonCommon menuButton: menuButtonList) {
+        for (ButtonCommon menuButton : menuButtonList) {
             menuButton.draw(batch);
         }
     }
 
     @Override
     public void callingBack(String str) {
-        Gdx.app.log("Debug",str);
+        Gdx.app.log("Debug", str);
     }
 }

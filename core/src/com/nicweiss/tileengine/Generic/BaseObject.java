@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 public class BaseObject {
     protected float x;
     protected float y;
-    protected int x_scale;
-    protected int y_scale;
+    protected float x_scale = 1;
+    protected float y_scale = 1;
     protected Texture img;
     protected float rotation = 0;
     protected float opacity = 1;
@@ -25,14 +25,14 @@ public class BaseObject {
     }
 
     public void draw(Batch batch) {
-        if(img==null)return;
-        if(deleted)return;
+        if (img == null) return;
+        if (deleted) return;
 
         batch.setColor(1, 1, 1, opacity);
         batch.draw(img,
-                x , y ,
-                x_scale / 2, y_scale / 2,
-                img.getWidth(), img.getHeight(),
+                x, y,
+                0, 0,
+                img.getWidth() * x_scale, img.getHeight() * y_scale,
                 1, 1,
                 rotation,
                 0, 0,
@@ -60,15 +60,15 @@ public class BaseObject {
         }
     }
 
-    public void touchOut(){
+    public void touchOut() {
         isTouched = false;
     }
 
-    public void onTouch(){
-        Gdx.app.log("Touch: ","YEP!");
+    public void onTouch() {
+        Gdx.app.log("Touch: ", "YEP!");
     }
 
-    public void touch(){
+    public void touch() {
 
     }
 
@@ -100,11 +100,11 @@ public class BaseObject {
         y = new_y;
     }
 
-    public void setScaleOfX(int new_scale_x) {
+    public void setScaleOfX(float new_scale_x) {
         x_scale = new_scale_x;
     }
 
-    public void setScaleOfY(int new_scale_y) {
+    public void setScaleOfY(float new_scale_y) {
         y_scale = new_scale_y;
     }
 
@@ -117,7 +117,7 @@ public class BaseObject {
         return deleted;
     }
 
-    public String getObjectId(){
+    public String getObjectId() {
         return objectId;
     }
 
@@ -125,11 +125,11 @@ public class BaseObject {
         this.objectId = objectId;
     }
 
-    public float getWidth(){
-        return img.getWidth();
+    public float getWidth() {
+        return img.getWidth() * x_scale;
     }
 
-    public float getHeight(){
-        return img.getHeight();
+    public float getHeight() {
+        return img.getHeight() * y_scale;
     }
 }

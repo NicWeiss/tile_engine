@@ -1,4 +1,5 @@
 package com.nicweiss.tileengine.Generic;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -7,10 +8,10 @@ import com.nicweiss.tileengine.Views.MainMenu;
 
 
 public abstract class View implements InputProcessor {
-    public  float fingerX, fingerY;
-    public static Store store ;
+    public float fingerX, fingerY;
+    public static Store store;
 
-    public void init(){
+    public void init() {
     }
 
 
@@ -59,17 +60,17 @@ public abstract class View implements InputProcessor {
         return false;
     }
 
-    public void render(SpriteBatch batch){
+    public void render(SpriteBatch batch) {
 
     }
 
-    public  void destruct(){
+    public void destruct() {
 
     }
 
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
-        Gdx.app.log("Debug","View finalize");
+        Gdx.app.log("Debug", "View finalize");
     }
 }

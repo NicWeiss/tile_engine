@@ -13,83 +13,83 @@ import static com.badlogic.gdx.Application.LOG_INFO;
 
 
 public class Main extends ApplicationAdapter {
-	ExtendViewport viewport;
-	public static OrthographicCamera camera;
+    ExtendViewport viewport;
+    public static OrthographicCamera camera;
 
-	public static View view;
-	public static Store store;
-	public static
+    public static View view;
+    public static Store store;
+    public static
 
-	SpriteBatch batch;
+    SpriteBatch batch;
 
 
-	@Override
-	public void create () {
-		Gdx.app.setLogLevel(LOG_INFO);
+    @Override
+    public void create() {
+        Gdx.app.setLogLevel(LOG_INFO);
 
-		store = new Store();
-		store.init();
+        store = new Store();
+        store.init();
 
-		float screenWidth = Gdx.graphics.getWidth();
-		float screenHeight = Gdx.graphics.getHeight();
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
 //		Gdx.app.log("CREATE! ", "screenWidth: " + String.valueOf(screenWidth) + " - screenHeight: " + String.valueOf(screenHeight));
 
-		float ratioX = 0;
-		float ratioY = 0;
+        float ratioX = 0;
+        float ratioY = 0;
 
-		for (float i = screenWidth; i != 0; i--) {
-			ratioX = screenWidth / i;
-			ratioY = screenHeight / i;
-			float divisionRemainderX = ratioX - (int) ratioX;
-			float divisionRemainderY = ratioY - (int) ratioY;
+        for (float i = screenWidth; i != 0; i--) {
+            ratioX = screenWidth / i;
+            ratioY = screenHeight / i;
+            float divisionRemainderX = ratioX - (int) ratioX;
+            float divisionRemainderY = ratioY - (int) ratioY;
 
-			if ((divisionRemainderX == 0) && (divisionRemainderY == 0)) {
-				break;
-			}
-		}
+            if ((divisionRemainderX == 0) && (divisionRemainderY == 0)) {
+                break;
+            }
+        }
 
-		float newWidth = Store.display.get("width");
-		float newHeight = ((float) newWidth / ratioX) * ratioY;
-		Store.display.put("height", newHeight);
+        float newWidth = Store.display.get("width");
+        float newHeight = ((float) newWidth / ratioX) * ratioY;
+        Store.display.put("height", newHeight);
 
-		camera = new OrthographicCamera();
-		viewport = new ExtendViewport(newWidth, newHeight, camera);
-		viewport.apply();
-		camera.position.set(newWidth / 2, newHeight / 2, 0);
-		changeView(new Logo());
-		batch = new SpriteBatch();
-	}
+        camera = new OrthographicCamera();
+        viewport = new ExtendViewport(newWidth, newHeight, camera);
+        viewport.apply();
+        camera.position.set(newWidth / 2, newHeight / 2, 0);
+        changeView(new Logo());
+        batch = new SpriteBatch();
+    }
 
-	public static void changeView(View newView){
-		if(view!=null) {
-			view.destruct();
-			view = null;
-		}
-		System.gc();
-		view = newView;
-		view.init();
-		Gdx.input.setInputProcessor(view);
-		Gdx.input.setCatchBackKey(true);
-	}
+    public static void changeView(View newView) {
+        if (view != null) {
+            view.destruct();
+            view = null;
+        }
+        System.gc();
+        view = newView;
+        view.init();
+        Gdx.input.setInputProcessor(view);
+        Gdx.input.setCatchBackKey(true);
+    }
 
 
-	@Override
-	public void resize(int width, int height) {
-		super.resize(width, height);
-		viewport.update(width, height);
-	}
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+        viewport.update(width, height);
+    }
 
-	@Override
-	public void render () {
-		camera.update();
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		view.render(batch);
-		batch.end();
-	}
+    @Override
+    public void render() {
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        view.render(batch);
+        batch.end();
+    }
 
-	@Override
-	public void dispose () {
-		batch.dispose();
-	}
+    @Override
+    public void dispose() {
+        batch.dispose();
+    }
 }
