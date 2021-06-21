@@ -23,6 +23,7 @@ public class Logo extends View{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        Gdx.app.log("Debug", "openMenu");
         openMenu();
         return false;
     }

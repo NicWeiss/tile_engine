@@ -1,27 +1,20 @@
 package com.nicweiss.tileengine.Views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Array;
 import com.nicweiss.tileengine.Components.Ui.Buttons.ButtonCommon;
 import com.nicweiss.tileengine.Components.Ui.UiObject;
 import com.nicweiss.tileengine.Generic.View;
-import com.nicweiss.tileengine.Lib.Font;
 import com.nicweiss.tileengine.Lib.Ui;
+import com.nicweiss.tileengine.Main;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class MainMenu extends View implements UiObject.Callback {
-
     public Ui ui;
-
     ButtonCommon[] menuButtonList;
-    private Font fontTitle;
-    private String someText;
 
     public MainMenu() {
         ui = new Ui(store);
@@ -37,9 +30,6 @@ public class MainMenu extends View implements UiObject.Callback {
         for (ButtonCommon menuButton : menuButtonList) {
             menuButton.registerCallBack(this);
         }
-
-        fontTitle = new Font(14, Color.WHITE);
-        fontTitle.setText("");
     }
 
     @Override
@@ -59,12 +49,7 @@ public class MainMenu extends View implements UiObject.Callback {
             menuButton.touchOut();
         }
 
-        someText = "";
-        fontTitle.setText("");
         return false;
-    }
-
-    public void log(String message) {
     }
 
     public void render(SpriteBatch batch) {
@@ -75,14 +60,24 @@ public class MainMenu extends View implements UiObject.Callback {
         for (ButtonCommon menuButton : menuButtonList) {
             menuButton.draw(batch);
         }
-
-        fontTitle.draw(batch, someText, 0, 100);
     }
 
     @Override
-    public void callingBack(String str) {
-        someText = str;
-        fontTitle.setText(someText);
-        Gdx.app.log("Debug", str);
+    public void callingBack(String buttonId) {
+        switch (buttonId) {
+            case ("menu_newGame"):
+                Main.changeView(new MapMenu());
+                break;
+            case ("menu_loadGame"):
+//                Код2;
+                break;
+            case ("menu_settings"):
+//                Код3;
+                break;
+            case ("menu_exit"):
+                Main.exit();
+                break;
+        }
+//        Gdx.app.log("Debug", str);
     }
 }

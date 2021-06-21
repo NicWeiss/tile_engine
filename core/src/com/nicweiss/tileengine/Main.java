@@ -88,4 +88,10 @@ public class Main extends ApplicationAdapter {
     public void dispose() {
         batch.dispose();
     }
+
+
+    public static void exit() {
+        System.exit(0);
+    }
+
 }
