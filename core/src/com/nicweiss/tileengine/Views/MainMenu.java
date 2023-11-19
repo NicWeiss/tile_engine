@@ -9,21 +9,24 @@ import com.nicweiss.tileengine.Generic.View;
 import com.nicweiss.tileengine.Lib.Ui;
 import com.nicweiss.tileengine.Main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
-public class MainMenu extends View implements UiObject.Callback {
+public class MainMenu extends View implements UiObject.PressButtonCallback {
     public Ui ui;
     ButtonCommon[] menuButtonList;
 
     public MainMenu() {
         ui = new Ui(store);
 
-        HashMap<Integer, String[]> buttonsDescription = new HashMap();
-        buttonsDescription.put(0, new String[]{"New game", "menu_newGame"});
-        buttonsDescription.put(1, new String[]{"Load game", "menu_loadGame"});
-        buttonsDescription.put(2, new String[]{"Settings", "menu_settings"});
-        buttonsDescription.put(3, new String[]{"Exit", "menu_exit"});
+        List<String[]> buttonsDescription = new ArrayList<>();
+        
+        buttonsDescription.add(new String[]{"Continue", "menu#loadGame"});
+        buttonsDescription.add(new String[]{"New game", "menu#newGame"});
+//        buttonsDescription.add(new String[]{"Settings", "menu#settings"});
+//        buttonsDescription.add(new String[]{"Exit", "menu#exit"});
 
         menuButtonList = ui.createButtonList(buttonsDescription);
 
@@ -35,25 +38,19 @@ public class MainMenu extends View implements UiObject.Callback {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         super.touchDown(screenX, screenY, pointer, button);
-
-        for (ButtonCommon menuButton : menuButtonList) {
-            menuButton.checkTouch(fingerX, fingerY);
-        }
+        for (ButtonCommon menuButton : menuButtonList) { menuButton.checkTouch(fingerX, fingerY); }
 
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        for (ButtonCommon menuButton : menuButtonList) {
-            menuButton.touchOut();
-        }
+        for (ButtonCommon menuButton : menuButtonList) { menuButton.touchOut(); }
 
         return false;
     }
 
     public void render(SpriteBatch batch) {
-
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClearColor((float) 0x00 / 0xff, (float) 0x00 / 0xff, (float) 0x00 / 0xff, 1);
 
@@ -63,18 +60,18 @@ public class MainMenu extends View implements UiObject.Callback {
     }
 
     @Override
-    public void callingBack(String buttonId) {
+    public void onPressButton(String buttonId) {
         switch (buttonId) {
-            case ("menu_newGame"):
+            case ("menu#newGame"):
                 Main.changeView(new MapMenu());
                 break;
-            case ("menu_loadGame"):
+            case ("menu#loadGame"):
 //                Код2;
                 break;
-            case ("menu_settings"):
+            case ("menu#settings"):
 //                Код3;
                 break;
-            case ("menu_exit"):
+            case ("menu#exit"):
                 Main.exit();
                 break;
         }

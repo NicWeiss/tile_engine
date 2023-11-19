@@ -4,6 +4,7 @@ import com.nicweiss.tileengine.Components.Ui.Buttons.ButtonCommon;
 import com.nicweiss.tileengine.Generic.Store;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Ui {
     public static Store store;
@@ -12,7 +13,7 @@ public class Ui {
         this.store = store;
     }
 
-    public ButtonCommon[] createButtonList(HashMap<Integer, String[]> buttonsDescription) {
+    public ButtonCommon[] createButtonList(List<String[]> buttonsDescription) {
         ButtonCommon button;
 
         int buttonsCount = buttonsDescription.size();

@@ -7,14 +7,14 @@ public class UiObject extends BaseObject {
     public String title;
     public static Store store;
 
-    public interface Callback {
-        void callingBack(String str);
+    public interface PressButtonCallback {
+        void onPressButton(String str);
     }
 
-    public Callback callback;
+    public PressButtonCallback pressButtonCallback;
 
-    public void registerCallBack(Callback callback) {
-        this.callback = callback;
+    public void registerCallBack(PressButtonCallback pressButtonCallback) {
+        this.pressButtonCallback = pressButtonCallback;
     }
 
     public void setTitle(String title) {

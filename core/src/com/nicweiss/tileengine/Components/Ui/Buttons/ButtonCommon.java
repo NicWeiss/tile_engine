@@ -21,7 +21,7 @@ public class ButtonCommon extends UiObject {
 
     @Override
     public void onTouch() {
-        callback.callingBack(getObjectId());
+        pressButtonCallback.onPressButton(getObjectId());
     }
 
     @Override

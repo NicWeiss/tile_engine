@@ -63,6 +63,7 @@ public class Main extends ApplicationAdapter {
             view.destruct();
             view = null;
         }
+
         System.gc();
         view = newView;
         Gdx.input.setInputProcessor(view);
